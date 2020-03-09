@@ -1,12 +1,13 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export default function ArtistDetail(props){
 
   const artist = props.location.state.artist
   const [isBusy, setBusy] = useState(true)
   const[album, setAlbum] = useState([])
+  const matchHistory = useHistory()
 
   useEffect(()=>{
     const fetchAlbuns = async() => {
@@ -16,7 +17,7 @@ export default function ArtistDetail(props){
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer BQCC__mbjr3HE0cN2fkwhfDKd9iAOCpeuSaA7vbIFxZZm8tWnmZS8kZkPUr_NXb1sKn9If_gDBq1bq5E3VQqA9fLoqhOQhVYwqv7jsceS--ApETT_mm3Ty78cWIEjHXPW9FYuc-AOIEUDI7iCo6XFfN0FfQWw9kaEuZylDFiTeu3jFwVa27pHilRZoBZJnam9aCXRQeYpa66qUOEm-YspbbxNFuYS_uUUnbX2Si5BDNIQ-2hsP9nkcJ4PUrr0VKX0NHQlMhepe6KAbY'
+          'Authorization': 'Bearer BQDw08v6spH8rpOnKbxsHEagbeMcev7vbYXoTY4RF-iqHzuCAMUXemRcEN7smjpprgHGvFxFsOadWuCOhTFcfXJ3mhbvdBWiw9Rtw5GoHxHQL0KrYz938CQrYFQeZA1pvu-NCLttMC070rZ3gUU'
         }
       })
       await data.json().then(function(result){
@@ -32,7 +33,8 @@ export default function ArtistDetail(props){
   return(
     <div>
       <button>
-        <Link to={{pathname:`/search`, state:{artist}}}>Back</Link>
+        {/* <Link to={{pathname:`/search`, state:{artist}}}>Back</Link> */}
+        <a onClick={()=>{matchHistory.goBack()}}>Back</a>
       </button>
       <h1>{artist.name}</h1>
       <img src={artist.images[0].url} alt=""></img>
@@ -47,11 +49,12 @@ export default function ArtistDetail(props){
       isBusy ? <div>Loading</div>:
         <ul>
           {album.map(item=>{
+            // console.log(item)
             return (
               <div key={item.id}>
                 <li>{item.name}</li>
                 <li>{item.release_date}</li>
-                {typeof artist.images !== 'undefined' && artist.images.length > 0 ? <img src={artist.images[0].url} alt=""></img>: <span>No Image!</span>}
+                {typeof item.images !== 'undefined' && item.images.length > 0 ? <img src={item.images[0].url} alt=""></img>: <span>No Image!</span>}
               </div>
             )
           })}
