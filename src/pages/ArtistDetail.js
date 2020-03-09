@@ -17,7 +17,7 @@ export default function ArtistDetail(props){
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer BQDw08v6spH8rpOnKbxsHEagbeMcev7vbYXoTY4RF-iqHzuCAMUXemRcEN7smjpprgHGvFxFsOadWuCOhTFcfXJ3mhbvdBWiw9Rtw5GoHxHQL0KrYz938CQrYFQeZA1pvu-NCLttMC070rZ3gUU'
+          'Authorization': 'Bearer BQAt-NKcok2Ex2B3TZnhYDCbjFgZqU-MJvmQUqr5QNt348DWPLxm9GoEaU8wSZQo3s_CroYmE2R6wl8s3BLR-Xg4z1KLvvyQbqpG8_MvzWXPEcRKwZkyY4CqEFdPZZK8zzDzGYXx-ojePA2J23o'
         }
       })
       await data.json().then(function(result){
